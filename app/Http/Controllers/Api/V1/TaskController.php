@@ -6,6 +6,7 @@ use App\Models\Task;
 use App\Http\Requests\StoreTaskRequest;
 use App\Http\Requests\UpdateTaskRequest;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\TaskResource;
 
 class TaskController extends Controller
 {
@@ -14,9 +15,11 @@ class TaskController extends Controller
      */
     public function index()
     {
-        return Task::all();
+        // return Task::all();
         // $tasks = Task::all();
         // return response()->json($tasks);
+        // return TaskResource::collection(Task::all());
+        return Task::all()->toResourceCollection(TaskResource::class);
     }
 
     /**
